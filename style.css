@@ -8,7 +8,7 @@ body {
     margin: 0;
 }
 
-/* 🎮 TITRE */
+/* TITLE */
 h1 {
     margin-bottom: 5px;
     font-size: 2.8rem;
@@ -16,12 +16,12 @@ h1 {
     letter-spacing: 1px;
 }
 
-/* 🎛️ MENU */
+/* MENU */
 #menu {
     margin-bottom: 15px;
 }
 
-/* 🎚️ SELECT */
+/* SELECT */
 select {
     padding: 8px 12px;
     margin: 5px;
@@ -38,20 +38,20 @@ select:hover {
     transform: scale(1.05);
 }
 
-/* 🏷️ TITRE GRID */
+/* TITLE GRID */
 #title {
     margin-top: 10px;
     font-size: 1.2rem;
 }
 
-/* 🔢 COMPTEUR */
+/* COUNTER */
 #counter {
     margin-bottom: 15px;
     font-size: 42px;
     font-weight: bold;
 }
 
-/* 🧩 GRID */
+/* GRID */
 #grid {
     display: grid;
     grid-template-columns: repeat(8, 80px);
@@ -59,7 +59,7 @@ select:hover {
     justify-content: center;
 }
 
-/* 🟦 CELLULE */
+/* CELL */
 .cell {
     width: 80px;
     height: 80px;
@@ -74,40 +74,40 @@ select:hover {
     position: relative;
 }
 
-/* 🖼️ IMAGE */
+/* IMAGE */
 .cell img {
     width: 70px;
     height: 70px;
 }
 
-/* ✨ HOVER */
+/* HOVER */
 .cell:hover:not(.caught-bugs):not(.caught-fish) {
     transform: scale(1.1);
     background-color: #3a3a3a;
     box-shadow: 0 0 8px rgba(255,255,255,0.2);
 }
 
-/* ✅ HOVER même capturé */
+/* HOVERS */
 .caught-bugs:hover,
 .caught-fish:hover {
     transform: scale(1.1);
 }
 
-/* 🟢 BUGS */
+/* BUGS */
 .caught-bugs {
     background-color: #2ecc71 !important;
     border-color: #27ae60;
     box-shadow: 0 0 10px rgba(46, 204, 113, 0.6);
 }
 
-/* 🔵 FISH */
+/* FISH */
 .caught-fish {
     background-color: #3498db !important;
     border-color: #2980b9;
     box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
 }
 
-/* 🔘 BOUTONS */
+/* BUTTONS */
 button {
     margin-top: 15px;
     margin-left: 5px;
@@ -126,7 +126,7 @@ button:hover {
     background-color: #4a4a4a;
 }
 
-/* 🏷️ NOMS */
+/* NAMES */
 .name {
     position: absolute;
     bottom: 3px;
@@ -137,12 +137,12 @@ button:hover {
     display: none;
 }
 
-/* 👁️ AFFICHAGE NOM */
+/* DISPLAY NAMES */
 .show-names .name {
     display: block;
 }
 
-/* 🤝 COOP MENU */
+/* COOP MENU */
 #coopMenu {
     margin-bottom: 15px;
 }
