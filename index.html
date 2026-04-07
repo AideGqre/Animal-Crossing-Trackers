@@ -4,38 +4,68 @@
     <meta charset="UTF-8">
     <title>AC Tracker</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css?v=5.0">
+    <link rel="stylesheet" href="style.css?v=11.0">
 </head>
 <body>
 
     <h1>🐛 Animal Crossing Tracker</h1>
 
     <div id="menu">
-        <button id="toggleNames">Display Names</button>
-        <button id="toggleSound">SFX ON</button>
+        <div id="menuTop">
+            <button id="toggleNames">Display Names</button>
+            <button id="toggleSound">SFX ON</button>
 
-        <select id="gameSelect">
-            <option value="gc">GameCube</option>
-            <option value="ww">Wild World</option>
-            <option value="cf">City Folk</option>
-            <option value="nl">New Leaf</option>
-            <option value="nh">New Horizons</option>
-        </select>
+            <select id="gameSelect">
+                <option value="gc">GameCube</option>
+                <option value="ww">Wild World</option>
+                <option value="cf">City Folk</option>
+                <option value="nl">New Leaf</option>
+                <option value="nh">New Horizons</option>
+            </select>
 
-        <select id="categorySelect">
-            <option value="bugs">Bugs</option>
-            <option value="fish">Fish</option>
-        </select>
+            <select id="categorySelect">
+                <option value="bugs">Bugs</option>
+                <option value="fish">Fish</option>
+                <option value="all">Bugs & Fish</option>
+            </select>
+        </div>
+
+        <div id="menuCoop">
+            <button id="toggleCoop">Co-op Mode</button>
+        </div>
     </div>
-	
+
+    <!-- COOP PANEL -->
     <div id="coopMenu">
-        <input type="text" id="roomInput" placeholder="Enter room code">
-        <button id="joinRoom">Join</button>
-        <button id="createRoom">Create</button>
-    </div>	
+
+        <!-- Mode selector -->
+        <div id="modeSelector">
+            <button id="btnModeCoop" class="mode-btn active">🤝 Co-op</button>
+            <button id="btnModeRace">🏁 Race</button>
+        </div>
+
+        <!-- Co-op fields -->
+        <div id="coopFields">
+            <input type="text" id="roomInput" placeholder="Room code">
+            <button id="joinRoom">Join</button>
+            <button id="createRoom">Create</button>
+        </div>
+
+        <!-- Race fields -->
+        <div id="raceFields" style="display:none;">
+            <input type="text" id="pseudoInput" placeholder="Your nickname">
+            <input type="text" id="raceRoomInput" placeholder="Room code">
+            <button id="joinRaceRoom">Join</button>
+            <button id="createRaceRoom">Create</button>
+        </div>
+
+    </div>
 
     <h2 id="title">City Folk - Bugs</h2>
     <p id="counter">0 / 64</p>
+
+    <!-- RACE SCOREBOARD -->
+    <div id="scoreboard"></div>
 
     <div id="grid"></div>
 
@@ -57,12 +87,10 @@
         };
 
         firebase.initializeApp(firebaseConfig);
-
         window.db = firebase.database();
     </script>
 
-    <!-- SCRIPT -->
-    <script src="script.js?v=5.0"></script>
+    <script src="script.js?v=11.0"></script>
 
 </body>
 </html>
