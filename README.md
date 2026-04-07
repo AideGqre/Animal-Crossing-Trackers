@@ -1,6 +1,6 @@
 # 🐛 Animal Crossing Tracker
 
-A simple and visual web app to track the bugs and fish you've caught during your **Animal Crossing speedruns** — now with **real-time co-op mode**!
+A simple and visual web app to track the bugs and fish you've caught during your **Animal Crossing speedruns** — now with **real-time multiplayer modes**!
 
 ---
 
@@ -17,16 +17,26 @@ A simple and visual web app to track the bugs and fish you've caught during your
 - Optional sound effects
 - Toggle creature names display
 - Progress saved automatically (localStorage)
+- **Bugs & Fish** combined grid for full-game tracking (Net & Rod categories)
 
-### 🤝 Co-op Mode (NEW)
+### 🤝 Co-op Mode
 
 - Create or join a private room using a code
 - Real-time synchronization between players
 - Actions (catch, uncatch, reset) are shared instantly
 - Progress is separated per game and category
-- Automatic room cleanup after inactivity
+- Automatic room cleanup after 24h of inactivity
 
-Perfect for **co-op speedruns** or racing with friends!
+### 🏁 Race Mode (NEW)
+
+- Enter a nickname and create or join a race room
+- Each player has their **own independent grid**
+- A **live scoreboard** shows every player's progress in real time
+- Each player is assigned a unique color on the scoreboard
+- In Bugs & Fish mode, bugs and fish are tracked separately per player
+- Resetting only affects your own progress
+
+Perfect for **competitive speedruns** or racing with friends!
 
 ---
 
@@ -40,16 +50,25 @@ Perfect for **co-op speedruns** or racing with friends!
 
 ### Solo Mode
 
-1. Select your game and category (Bugs or Fish)
+1. Select your game and category (Bugs, Fish, or Bugs & Fish)
 2. Click on creatures as you catch them
 3. Track your progress in real time
 
 ### Co-op Mode
 
-1. Click **Create** to generate a room code
-2. Share the code with your friends
-3. Other players click **Join** and enter the code
-4. Play together — everything syncs instantly!
+1. Click **Multiplayer** → select **🤝 Co-op**
+2. Click **Create** to generate a room code
+3. Share the code with your friends
+4. Other players click **Join** and enter the code
+5. Play together — everything syncs instantly!
+
+### Race Mode
+
+1. Click **Multiplayer** → select **🏁 Race**
+2. Enter your nickname
+3. Click **Create** to generate a room code, or **Join** with an existing code
+4. Each player tracks their own progress independently
+5. Watch the scoreboard update in real time!
 
 ---
 
@@ -59,6 +78,7 @@ Use the **Reset** button to clear your current run.
 
 - In solo: resets only your local progress
 - In co-op: resets the room for all players
+- In race: resets only your own progress
 
 ---
 
@@ -66,14 +86,15 @@ Use the **Reset** button to clear your current run.
 
 - Progress is stored locally in solo mode
 - Each game and category has separate progress tracking
-- In co-op mode, data is synced using Firebase Realtime Database
-- Rooms are automatically deleted after a period of inactivity
+- In multiplayer modes, data is synced using Firebase Realtime Database
+- Rooms are automatically deleted after 24h of inactivity
+- The **Bugs & Fish** grid uses optimized column layouts per game for a clean rectangular display
 
 ---
 
 ## ⚠️ Cache Notice
 
-If updates don’t appear immediately, try refreshing the page.
+If updates don't appear immediately, try refreshing the page.
 
 ---
 
