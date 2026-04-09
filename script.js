@@ -23,7 +23,15 @@ popSound.volume   = 0.3;
 
 // ─── GRID COLUMNS ─────────────────────────────────────────────────────────────
 const COLS_SINGLE = 8;
-const COLS_ALL    = { gc: 10, ww: 8, cf: 8, nl: 12, nh: 10 };
+const COLS_ALL    = {
+    dnm: 8,   // 32+32=64  → 8×8
+    ep:  8,   // 48+48=96  → 8×12
+    gc:  10,  // 40+40=80  → 10×8
+    ww:  8,   // 56+56=112 → 8×14
+    cf:  8,   // 64+64=128 → 8×16
+    nl:  12,  // 72+72=144 → 12×12
+    nh:  10,  // 80+80=160 → 10×16
+};
 
 function setGridCols(cols) {
     grid.style.setProperty("--grid-cols", cols);
@@ -37,7 +45,7 @@ try {
     }
 } catch (e) { console.log("❌ Firebase error:", e); }
 
-// ─── MODE SELECTOR (Co-op / Race) ─────────────────────────────────────────────
+// ─── MODE SELECTOR ────────────────────────────────────────────────────────────
 document.getElementById("btnModeCoop").addEventListener("click", () => {
     currentMode = "coop";
     document.getElementById("btnModeCoop").classList.add("active");
@@ -56,6 +64,184 @@ document.getElementById("btnModeRace").addEventListener("click", () => {
 
 // ─── ALL GAME DATA ────────────────────────────────────────────────────────────
 const DATA = {
+
+    // ── Doubutsu no Mori ──────────────────────────────────────────────────────
+    dnm: {
+        bugs: [
+            ["Common butterfly","Common_Butterfly_PG_Icon_Upscaled.png"],
+            ["Yellow butterfly","Yellow_Butterfly_PG_Icon_Upscaled.png"],
+            ["Tiger butterfly","Tiger_Butterfly_PG_Icon_Upscaled.png"],
+            ["Purple butterfly","Purple_Butterfly_PG_Icon_Upscaled.png"],
+            ["Brown cicada","Brown_Cicada_PG_Icon_Upscaled.png"],
+            ["Robust cicada","Robust_Cicada_PG_Icon_Upscaled.png"],
+            ["Walker cicada","Walker_Cicada_PG_Icon_Upscaled.png"],
+            ["Evening cicada","Evening_Cicada_PG_Icon_Upscaled.png"],
+            ["Red dragonfly","Red_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Common dragonfly","Common_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Darner dragonfly","Darner_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Banded dragonfly","Banded_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Cricket","Cricket_PG_Icon_Upscaled.png"],
+            ["Grasshopper","Grasshopper_PG_Icon_Upscaled.png"],
+            ["Pine cricket","Pine_Cricket_PG_Icon_Upscaled.png"],
+            ["Bell cricket","Bell_Cricket_PG_Icon_Upscaled.png"],
+            ["Ladybug","Ladybug_PG_Icon_Upscaled.png"],
+            ["Spotted ladybug","Spotted_Ladybug_PG_Icon_Upscaled.png"],
+            ["Mantis","Mantis_PG_Icon_Upscaled.png"],
+            ["Long locust","Long_Locust_PG_Icon_Upscaled.png"],
+            ["Migratory locust","Migratory_Locust_PG_Icon_Upscaled.png"],
+            ["Cockroach","Cockroach_PG_Icon_Upscaled.png"],
+            ["Bee","Bee_PG_Icon_Upscaled.png"],
+            ["Firefly","Firefly_PG_Icon_Upscaled.png"],
+            ["Drone beetle","Drone_Beetle_PG_Icon_Upscaled.png"],
+            ["Longhorn beetle","Longhorn_Beetle_PG_Icon_Upscaled.png"],
+            ["Jewel beetle","Jewel_Beetle_PG_Icon_Upscaled.png"],
+            ["Dynastid beetle","Dynastid_Beetle_PG_Icon_Upscaled.png"],
+            ["Flat stag beetle","Flat_Stag_Beetle_PG_Icon_Upscaled.png"],
+            ["Saw stag beetle","Saw_Stag_Beetle_PG_Icon_Upscaled.png"],
+            ["Mountain beetle","Mountain_Beetle_PG_Icon_Upscaled.png"],
+            ["Giant beetle","Giant_Beetle_PG_Icon_Upscaled.png"],
+        ],
+        fish: [
+            ["Crucian carp","Crucian_Carp_PG_Icon_Upscaled.png"],
+            ["Brook trout","Brook_Trout_PG_Icon_Upscaled.png"],
+            ["Carp","Carp_PG_Icon_Upscaled.png"],
+            ["Koi","Koi_PG_Icon_Upscaled.png"],
+            ["Barbel steed","Barbel_Steed_PG_Icon_Upscaled.png"],
+            ["Dace","Dace_PG_Icon_Upscaled.png"],
+            ["Catfish","Catfish_PG_Icon_Upscaled.png"],
+            ["Giant catfish","Giant_Catfish_PG_Icon_Upscaled.png"],
+            ["Pale chub","Pale_Chub_PG_Icon_Upscaled.png"],
+            ["Bitterling","Bitterling_PG_Icon_Upscaled.png"],
+            ["Loach","Loach_PG_Icon_Upscaled.png"],
+            ["Bluegill","Bluegill_PG_Icon_Upscaled.png"],
+            ["Small bass","Small_Bass_PG_Icon_Upscaled.png"],
+            ["Bass","Bass_PG_Inv_Icon_Upscaled.png"],
+            ["Large bass","Large_Bass_PG_Icon_Upscaled.png"],
+            ["Giant snakehead","Giant_Snakehead_PG_Icon_Upscaled.png"],
+            ["Eel","Eel_PG_Icon_Upscaled.png"],
+            ["Freshwater goby","Freshwater_Goby_PG_Icon_Upscaled.png"],
+            ["Pond smelt","Pond_Smelt_PG_Icon_Upscaled.png"],
+            ["Sweetfish","Sweetfish_PG_Icon_Upscaled.png"],
+            ["Cherry salmon","Cherry_Salmon_PG_Icon_Upscaled.png"],
+            ["Rainbow trout","Rainbow_Trout_PG_Icon_Upscaled.png"],
+            ["Large char","Large_Char_PG_Icon_Upscaled.png"],
+            ["Stringfish","Stringfish_PG_Icon_Upscaled.png"],
+            ["Salmon","Salmon_PG_Icon_Upscaled.png"],
+            ["Goldfish","Goldfish_PG_Icon_Upscaled.png"],
+            ["Popeyed goldfish","Popeyed_Goldfish_PG_Icon_Upscaled.png"],
+            ["Guppy","Guppy_PG_Icon_Upscaled.png"],
+            ["Angelfish","Angelfish_PG_Icon_Upscaled.png"],
+            ["Piranha","Piranha_PG_Icon_Upscaled.png"],
+            ["Arowana","Arowana_PG_Icon_Upscaled.png"],
+            ["Coelacanth","Coelacanth_PG_Icon_Upscaled.png"],
+        ],
+    },
+
+    // ── Doubutsu no Mori e+ ───────────────────────────────────────────────────
+    ep: {
+        bugs: [
+            ["Common butterfly","gc/bugs/Common_Butterfly_PG_Icon_Upscaled.png"],
+            ["Yellow butterfly","gc/bugs/Yellow_Butterfly_PG_Icon_Upscaled.png"],
+            ["Tiger butterfly","gc/bugs/Tiger_Butterfly_PG_Icon_Upscaled.png"],
+            ["Purple butterfly","gc/bugs/Purple_Butterfly_PG_Icon_Upscaled.png"],
+            ["Alexandra's swallowtail","e+/bugs/Alexandra's_Swallowtail_Butterfly_DnMe+_Icon_Upscaled.png"],
+            ["Mantis","gc/bugs/Mantis_PG_Icon_Upscaled.png"],
+            ["Long locust","gc/bugs/Long_Locust_PG_Icon_Upscaled.png"],
+            ["Migratory locust","gc/bugs/Migratory_Locust_PG_Icon_Upscaled.png"],
+            ["Red dragonfly","gc/bugs/Red_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Common dragonfly","gc/bugs/Common_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Darner dragonfly","gc/bugs/Darner_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Banded dragonfly","gc/bugs/Banded_Dragonfly_PG_Icon_Upscaled.png"],
+            ["Brown cicada","gc/bugs/Brown_Cicada_PG_Icon_Upscaled.png"],
+            ["Robust cicada","gc/bugs/Robust_Cicada_PG_Icon_Upscaled.png"],
+            ["Walker cicada","gc/bugs/Walker_Cicada_PG_Icon_Upscaled.png"],
+            ["Evening cicada","gc/bugs/Evening_Cicada_PG_Icon_Upscaled.png"],
+            ["Cricket","gc/bugs/Cricket_PG_Icon_Upscaled.png"],
+            ["Grasshopper","gc/bugs/Grasshopper_PG_Icon_Upscaled.png"],
+            ["Pine cricket","gc/bugs/Pine_Cricket_PG_Icon_Upscaled.png"],
+            ["Bell cricket","gc/bugs/Bell_Cricket_PG_Icon_Upscaled.png"],
+            ["Ladybug","gc/bugs/Ladybug_PG_Icon_Upscaled.png"],
+            ["Spotted ladybug","gc/bugs/Spotted_Ladybug_PG_Icon_Upscaled.png"],
+            ["Drone beetle","gc/bugs/Drone_Beetle_PG_Icon_Upscaled.png"],
+            ["Firefly","gc/bugs/Firefly_PG_Icon_Upscaled.png"],
+            ["Longhorn beetle","gc/bugs/Longhorn_Beetle_PG_Icon_Upscaled.png"],
+            ["Jewel beetle","gc/bugs/Jewel_Beetle_PG_Icon_Upscaled.png"],
+            ["Dynastid beetle","gc/bugs/Dynastid_Beetle_PG_Icon_Upscaled.png"],
+            ["Hercules beetle","e+/bugs/Hercules_Beetle_DnMe+_Icon_Upscaled.png"],
+            ["Flat stag beetle","gc/bugs/Flat_Stag_Beetle_PG_Icon_Upscaled.png"],
+            ["Saw stag beetle","gc/bugs/Saw_Stag_Beetle_PG_Icon_Upscaled.png"],
+            ["Mountain beetle","gc/bugs/Mountain_Beetle_PG_Icon_Upscaled.png"],
+            ["Giant beetle","gc/bugs/Giant_Beetle_PG_Icon_Upscaled.png"],
+            ["Mole cricket","gc/bugs/Mole_Cricket_PG_Icon_Upscaled.png"],
+            ["Snail","gc/bugs/Snail_PG_Icon_Upscaled.png"],
+            ["Pill bug","gc/bugs/Pill_Bug_PG_Icon_Upscaled.png"],
+            ["Spider","gc/bugs/Spider_PG_Icon_Upscaled.png"],
+            ["Bagworm","gc/bugs/Bagworm_PG_Icon_Upscaled.png"],
+            ["Flea","e+/bugs/Flea_DnMe+_Icon_Upscaled.png"],
+            ["Mosquito","gc/bugs/Mosquito_PG_Icon_Upscaled.png"],
+            ["Bee","gc/bugs/Bee_PG_Icon_Upscaled.png"],
+            ["Pond skater","gc/bugs/Pond_Skater_PG_Icon_Upscaled.png"],
+            ["Diving beetle","e+/bugs/Diving_Beetle_DnMe+_Icon_Upscaled.png"],
+            ["Crab","e+/bugs/Crab_DnMe+_Icon_Upscaled.png"],
+            ["Hermit crab","e+/bugs/Hermit_Crab_DnMe+_Icon_Upscaled.png"],
+            ["Coconut crab","e+/bugs/Coconut_Crab_DnMe+_Icon_Upscaled.png"],
+            ["Ant","gc/bugs/Ant_PG_Icon_Upscaled.png"],
+            ["Dung beetle","e+/bugs/Dung_Beetle_DnMe+_Icon_Upscaled.png"],
+            ["Cockroach","gc/bugs/Cockroach_PG_Icon_Upscaled.png"],
+        ],
+        fish: [
+            ["Crucian carp","gc/fish/Crucian_Carp_PG_Icon_Upscaled.png"],
+            ["Brook trout","gc/fish/Brook_Trout_PG_Icon_Upscaled.png"],
+            ["Carp","gc/fish/Carp_PG_Icon_Upscaled.png"],
+            ["Koi","gc/fish/Koi_PG_Icon_Upscaled.png"],
+            ["Barbel steed","gc/fish/Barbel_Steed_PG_Icon_Upscaled.png"],
+            ["Dace","gc/fish/Dace_PG_Icon_Upscaled.png"],
+            ["Catfish","gc/fish/Catfish_PG_Icon_Upscaled.png"],
+            ["Giant catfish","gc/fish/Giant_Catfish_PG_Icon_Upscaled.png"],
+            ["Pale chub","gc/fish/Pale_Chub_PG_Icon_Upscaled.png"],
+            ["Bitterling","gc/fish/Bitterling_PG_Icon_Upscaled.png"],
+            ["Loach","gc/fish/Loach_PG_Icon_Upscaled.png"],
+            ["Bluegill","gc/fish/Bluegill_PG_Icon_Upscaled.png"],
+            ["Small bass","gc/fish/Small_Bass_PG_Icon_Upscaled.png"],
+            ["Bass","gc/fish/Bass_PG_Inv_Icon_Upscaled.png"],
+            ["Large bass","gc/fish/Large_Bass_PG_Icon_Upscaled.png"],
+            ["Giant snakehead","gc/fish/Giant_Snakehead_PG_Icon_Upscaled.png"],
+            ["Eel","gc/fish/Eel_PG_Icon_Upscaled.png"],
+            ["Freshwater goby","gc/fish/Freshwater_Goby_PG_Icon_Upscaled.png"],
+            ["Pond smelt","gc/fish/Pond_Smelt_PG_Icon_Upscaled.png"],
+            ["Sweetfish","gc/fish/Sweetfish_PG_Icon_Upscaled.png"],
+            ["Cherry salmon","gc/fish/Cherry_Salmon_PG_Icon_Upscaled.png"],
+            ["Rainbow trout","gc/fish/Rainbow_Trout_PG_Icon_Upscaled.png"],
+            ["Large char","gc/fish/Large_Char_PG_Icon_Upscaled.png"],
+            ["Stringfish","gc/fish/Stringfish_PG_Icon_Upscaled.png"],
+            ["Salmon","gc/fish/Salmon_PG_Icon_Upscaled.png"],
+            ["Goldfish","gc/fish/Goldfish_PG_Icon_Upscaled.png"],
+            ["Popeyed goldfish","gc/fish/Popeyed_Goldfish_PG_Icon_Upscaled.png"],
+            ["Guppy","gc/fish/Guppy_PG_Icon_Upscaled.png"],
+            ["Angelfish","gc/fish/Angelfish_PG_Icon_Upscaled.png"],
+            ["Piranha","gc/fish/Piranha_PG_Icon_Upscaled.png"],
+            ["Arowana","gc/fish/Arowana_PG_Icon_Upscaled.png"],
+            ["Arapaima","gc/fish/Arapaima_PG_Icon_Upscaled.png"],
+            ["Crawfish","gc/fish/Crawfish_PG_Icon_Upscaled.png"],
+            ["Frog","gc/fish/Frog_PG_Icon_Upscaled.png"],
+            ["Killifish","gc/fish/Killifish_PG_Icon_Upscaled.png"],
+            ["Jellyfish","gc/fish/Jellyfish_PG_Icon_Upscaled.png"],
+            ["Sea bass","gc/fish/Sea_Bass_PG_Icon_Upscaled.png"],
+            ["Horse mackerel","e+/fish/Horse_Mackerel_DnMe+_Icon_Upscaled.png"],
+            ["Red snapper","gc/fish/Red_Snapper_PG_Icon_Upscaled.png"],
+            ["Barred knifejaw","gc/fish/Barred_Knifejaw_PG_Icon_Upscaled.png"],
+            ["Balloonfish","e+/fish/Balloonfish_DnMe+_Icon_Upscaled.png"],
+            ["Dab","e+/fish/Dab_DnMe+_Icon_Upscaled.png"],
+            ["Olive flounder","e+/fish/Olive_Flounder_DnMe+_Icon_Upscaled.png"],
+            ["Squid","e+/fish/Squid_DnMe+_Icon_Upscaled.png"],
+            ["Octopus","e+/fish/Octopus_DnMe+_Icon_Upscaled.png"],
+            ["Seahorse","e+/fish/Seahorse_DnMe+_Icon_Upscaled.png"],
+            ["Blue marlin","e+/fish/Blue_Marlin_DnMe+_Icon_Upscaled.png"],
+            ["Coelacanth","gc/fish/Coelacanth_PG_Icon_Upscaled.png"],
+        ],
+    },
+
+    // ── GameCube ──────────────────────────────────────────────────────────────
     gc: {
         bugs: [
             ["Common butterfly","Common_Butterfly_PG_Icon_Upscaled.png"],
@@ -142,6 +328,8 @@ const DATA = {
             ["Arapaima","Arapaima_PG_Icon_Upscaled.png"],
         ],
     },
+
+    // ── Wild World ────────────────────────────────────────────────────────────
     ww: {
         bugs: [
             ["Common butterfly","Common_Butterfly_WW_Inv_Icon.png"],
@@ -260,6 +448,8 @@ const DATA = {
             ["Coelacanth","Coelacanth_WW_Inv_Icon.png"],
         ],
     },
+
+    // ── City Folk ─────────────────────────────────────────────────────────────
     cf: {
         bugs: [
             ["Common butterfly","Common_Butterfly_CF_Icon.png"],
@@ -394,6 +584,8 @@ const DATA = {
             ["Coelacanth","Coelacanth_CF_Icon.png"],
         ],
     },
+
+    // ── New Leaf ──────────────────────────────────────────────────────────────
     nl: {
         bugs: [
             ["Common butterfly","Common_Butterfly_NL_Icon.png"],
@@ -543,7 +735,41 @@ const DATA = {
             ["Oarfish","Oarfish_NL_Icon.png"],
             ["Coelacanth","Coelacanth_NL_Icon.png"],
         ],
+        sea: [
+            ["Seaweed","Seaweed_NL_Icon.png"],
+            ["Sea grapes","Sea_Grapes_NL_Icon.png"],
+            ["Sea urchin","Sea_Urchin_NL_Icon.png"],
+            ["Acorn barnacle","Acorn_Barnacle_NL_Icon.png"],
+            ["Oyster","Oyster_NL_Icon.png"],
+            ["Turban shell","Turban_Shell_NL_Icon.png"],
+            ["Abalone","Abalone_NL_Icon.png"],
+            ["Ear shell","Ear_Shell_NL_Icon.png"],
+            ["Clam","Clam_NL_Icon.png"],
+            ["Pearl oyster","Pearl_Oyster_NL_Icon.png"],
+            ["Scallop","Scallop_NL_Icon.png"],
+            ["Sea anemone","Sea_Anemone_NL_Icon.png"],
+            ["Sea star","Sea_Star_NL_Icon.png"],
+            ["Sea cucumber","Sea_Cucumber_NL_Icon.png"],
+            ["Sea slug","Sea_Slug_NL_Icon.png"],
+            ["Flatworm","Flatworm_NL_Icon.png"],
+            ["Mantis shrimp","Mantis_Shrimp_NL_Icon.png"],
+            ["Sweet shrimp","Sweet_Shrimp_NL_Icon.png"],
+            ["Tiger prawn","Tiger_Prawn_NL_Icon.png"],
+            ["Spiny lobster","Spiny_Lobster_NL_Icon.png"],
+            ["Lobster","Lobster_NL_Icon.png"],
+            ["Snow crab","Snow_Crab_NL_Icon.png"],
+            ["Horsehair crab","Horsehair_Crab_NL_Icon.png"],
+            ["Red king crab","Red_King_Crab_NL_Icon.png"],
+            ["Spider crab","Spider_Crab_NL_Icon.png"],
+            ["Octopus","Octopus_NL_Icon.png"],
+            ["Spotted garden eel","Spotted_Garden_Eel_NL_Icon.png"],
+            ["Chambered nautilus","Chambered_Nautilus_NL_Icon.png"],
+            ["Horseshoe crab","Horseshoe_Crab_NL_Icon.png"],
+            ["Giant isopod","Giant_Isopod_NL_Icon.png"],
+        ],
     },
+
+    // ── New Horizons ──────────────────────────────────────────────────────────
     nh: {
         bugs: [
             ["Common butterfly","Common_Butterfly_NH_icon.png"],
@@ -709,6 +935,48 @@ const DATA = {
             ["Barreleye","Barreleye_NH_icon.png"],
             ["Coelacanth","Coelacanth_NH_icon.png"],
         ],
+        sea: [
+            ["Seaweed","Seaweed_NH_Icon.png"],
+            ["Sea grapes","Sea_Grapes_NH_Icon.png"],
+            ["Sea cucumber","Sea_Cucumber_NH_Icon.png"],
+            ["Sea pig","Sea_Pig_NH_Icon.png"],
+            ["Sea star","Sea_Star_NH_Icon.png"],
+            ["Sea urchin","Sea_Urchin_NH_Icon.png"],
+            ["Slate pencil urchin","Slate_Pencil_Urchin_NH_Icon.png"],
+            ["Sea anemone","Sea_Anemone_NH_Icon.png"],
+            ["Moon jellyfish","Moon_Jellyfish_NH_Icon.png"],
+            ["Sea slug","Sea_Slug_NH_Icon.png"],
+            ["Pearl oyster","Pearl_Oyster_NH_Icon.png"],
+            ["Mussel","Mussel_NH_Icon.png"],
+            ["Oyster","Oyster_NH_Icon.png"],
+            ["Scallop","Scallop_NH_Icon.png"],
+            ["Whelk","Whelk_NH_Icon.png"],
+            ["Turban shell","Turban_Shell_NH_Icon.png"],
+            ["Abalone","Abalone_NH_Icon.png"],
+            ["Gigas giant clam","Gigas_Giant_Clam_NH_Icon.png"],
+            ["Chambered nautilus","Chambered_Nautilus_NH_Icon.png"],
+            ["Octopus","Octopus_NH_Icon.png"],
+            ["Umbrella octopus","Umbrella_Octopus_NH_Icon.png"],
+            ["Vampire squid","Vampire_Squid_NH_Icon.png"],
+            ["Firefly squid","Firefly_Squid_NH_Icon.png"],
+            ["Gazami crab","Gazami_Crab_NH_Icon.png"],
+            ["Dungeness crab","Dungeness_Crab_NH_Icon.png"],
+            ["Snow crab","Snow_Crab_NH_Icon.png"],
+            ["Red king crab","Red_King_Crab_NH_Icon.png"],
+            ["Acorn barnacle","Acorn_Barnacle_NH_Icon.png"],
+            ["Spider crab","Spider_Crab_NH_Icon.png"],
+            ["Tiger prawn","Tiger_Prawn_NH_Icon.png"],
+            ["Sweet shrimp","Sweet_Shrimp_NH_Icon.png"],
+            ["Mantis shrimp","Mantis_Shrimp_NH_Icon.png"],
+            ["Spiny lobster","Spiny_Lobster_NH_Icon.png"],
+            ["Lobster","Lobster_NH_Icon.png"],
+            ["Giant isopod","Giant_Isopod_NH_Icon.png"],
+            ["Horseshoe crab","Horseshoe_Crab_NH_Icon.png"],
+            ["Sea pineapple","Sea_Pineapple_NH_Icon.png"],
+            ["Spotted garden eel","Spotted_Garden_Eel_NH_Icon.png"],
+            ["Flatworm","Flatworm_NH_Icon.png"],
+            ["Venus' flower basket","Venus'_Flower_Basket_NH_Icon.png"],
+        ],
     },
 };
 
@@ -737,8 +1005,16 @@ function saveStorage(game, category, caught) {
     }
 }
 
+// ─── ICON PATH ────────────────────────────────────────────────────────────────
+function buildIconSrc(game, category, file) {
+    if (file.includes("/")) {
+        return `icons/${file}`;
+    }
+    const folder = game === "dnm" ? "gc" : game;
+    return `icons/${folder}/${category}/${file}`;
+}
+
 // ─── SCOREBOARD ───────────────────────────────────────────────────────────────
-// Palette of 6 distinct colors, index 0 is always assigned to the local player
 const PLAYER_COLORS = 6;
 
 function countCaught(obj) {
@@ -756,12 +1032,11 @@ function updateScoreboard(roomData) {
     const category = categorySelect.value;
     const players  = roomData.players;
 
-    // Sort: local player first, then others by total score descending
     const names = Object.keys(players).sort((a, b) => {
         if (a === myPseudo) return -1;
         if (b === myPseudo) return 1;
-        const totalA = countCaught(players[a][`${game}_bugs`]) + countCaught(players[a][`${game}_fish`]);
-        const totalB = countCaught(players[b][`${game}_bugs`]) + countCaught(players[b][`${game}_fish`]);
+        const totalA = countCaught(players[a][`${game}_bugs`]) + countCaught(players[a][`${game}_fish`]) + countCaught(players[a][`${game}_sea`]);
+        const totalB = countCaught(players[b][`${game}_bugs`]) + countCaught(players[b][`${game}_fish`]) + countCaught(players[b][`${game}_sea`]);
         return totalB - totalA;
     });
 
@@ -769,12 +1044,10 @@ function updateScoreboard(roomData) {
     scoreboard.classList.add("visible");
 
     names.forEach((name, index) => {
-        const pData = players[name] || {};
-
-        // Local player always gets color 0, others get colors 1-5 in order
+        const pData      = players[name] || {};
         const colorIndex = name === myPseudo ? 0 : ((index % (PLAYER_COLORS - 1)) + 1);
 
-        const card = document.createElement("div");
+        const card   = document.createElement("div");
         card.classList.add("score-card", `player-color-${colorIndex}`);
 
         const nameEl = document.createElement("div");
@@ -794,7 +1067,7 @@ function updateScoreboard(roomData) {
                 `<span class="score-fish">🐟 ${fishCount}/${fishTotal}</span>`;
         } else {
             const caught = countCaught(pData[`${game}_${category}`]);
-            const total  = DATA[game][category].length;
+            const total  = DATA[game][category]?.length || 0;
             scoreEl.textContent = `${caught} / ${total}`;
         }
 
@@ -805,7 +1078,7 @@ function updateScoreboard(roomData) {
 }
 
 // ─── GENERIC GRID LOADER ──────────────────────────────────────────────────────
-function loadGenericGrid(map, iconPath, caughtClass, game, category) {
+function loadGenericGrid(map, game, category, caughtClass) {
     const total = map.length;
     let caught  = getStorageKey(game, category);
 
@@ -821,7 +1094,7 @@ function loadGenericGrid(map, iconPath, caughtClass, game, category) {
         cell.classList.add("cell");
 
         const img = document.createElement("img");
-        img.src   = `${iconPath}/${file}`;
+        img.src   = buildIconSrc(game, category, file);
         if (caught[safeKey]) cell.classList.add(caughtClass);
 
         cell.appendChild(img);
@@ -864,13 +1137,13 @@ function loadAllGrid(game) {
         counter.textContent = `${count} / ${total}   •   ${percent}%`;
     }
 
-    function createCell(name, file, iconPath, caughtClass, caughtObj, category) {
+    function createCell(name, file, game, category, caughtClass, caughtObj) {
         const safeKey = sanitizeKey(file);
         const cell    = document.createElement("div");
         cell.classList.add("cell");
 
         const img = document.createElement("img");
-        img.src   = `${iconPath}/${file}`;
+        img.src   = buildIconSrc(game, category, file);
         if (caughtObj[safeKey]) cell.classList.add(caughtClass);
 
         cell.appendChild(img);
@@ -896,10 +1169,10 @@ function loadAllGrid(game) {
     }
 
     bugMap.forEach(([name, file]) => {
-        grid.appendChild(createCell(name, file, `icons/${game}/bugs`, "caught-bugs", caughtBugs, "bugs"));
+        grid.appendChild(createCell(name, file, game, "bugs", "caught-bugs", caughtBugs));
     });
     fishMap.forEach(([name, file]) => {
-        grid.appendChild(createCell(name, file, `icons/${game}/fish`, "caught-fish", caughtFish, "fish"));
+        grid.appendChild(createCell(name, file, game, "fish", "caught-fish", caughtFish));
     });
 
     updateCounter();
@@ -913,15 +1186,26 @@ function loadGrid() {
 
     title.textContent = `${gameSelect.options[gameSelect.selectedIndex].text} - ${categorySelect.options[categorySelect.selectedIndex].text}`;
 
+    // Sea Creatures only available for nl and nh
+    if (category === "sea" && !DATA[game]?.sea) {
+        setGridCols(COLS_SINGLE);
+        counter.textContent = "0 / 0";
+        grid.innerHTML = "<p>No sea creatures in this game.</p>";
+        return;
+    }
+
     if (category === "all") {
         setGridCols(COLS_ALL[game]);
         loadAllGrid(game);
+    } else if (category === "sea") {
+        setGridCols(game === "nl" ? 6 : COLS_SINGLE);
+        loadGenericGrid(DATA[game].sea, game, "sea", "caught-fish");
     } else {
         setGridCols(COLS_SINGLE);
         const caughtClass = category === "bugs" ? "caught-bugs" : "caught-fish";
         const map = DATA[game]?.[category];
         if (map) {
-            loadGenericGrid(map, `icons/${game}/${category}`, caughtClass, game, category);
+            loadGenericGrid(map, game, category, caughtClass);
         } else {
             counter.textContent = "0 / 0";
             grid.innerHTML = "<p>what are you doing here mate</p>";
@@ -1063,3 +1347,304 @@ function cleanupOldRooms() {
 }
 
 cleanupOldRooms();
+
+// ═══════════════════════════════════════════════════════════════
+// 🎉 CELEBRATION — confettis + clignotement arc-en-ciel
+// ═══════════════════════════════════════════════════════════════
+
+(function() {
+
+    const style = document.createElement("style");
+    style.textContent = `
+        .confetti-piece {
+            position: fixed;
+            top: -12px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+            80%  { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg) scale(0.6); opacity: 0; }
+        }
+
+        @keyframes rainbowFlash {
+            0%   { background-color: #e74c3c; border-color: #c0392b; box-shadow: 0 0 12px rgba(231,76,60,0.9); }
+            14%  { background-color: #e67e22; border-color: #d35400; box-shadow: 0 0 12px rgba(230,126,34,0.9); }
+            28%  { background-color: #f1c40f; border-color: #f39c12; box-shadow: 0 0 12px rgba(241,196,15,0.9); }
+            42%  { background-color: #2ecc71; border-color: #27ae60; box-shadow: 0 0 12px rgba(46,204,113,0.9); }
+            57%  { background-color: #3498db; border-color: #2980b9; box-shadow: 0 0 12px rgba(52,152,219,0.9); }
+            71%  { background-color: #9b59b6; border-color: #8e44ad; box-shadow: 0 0 12px rgba(155,89,182,0.9); }
+            85%  { background-color: #e91e8c; border-color: #c2185b; box-shadow: 0 0 12px rgba(233,30,140,0.9); }
+            100% { background-color: #e74c3c; border-color: #c0392b; box-shadow: 0 0 12px rgba(231,76,60,0.9); }
+        }
+
+        .cell.rainbow-flash {
+            animation: rainbowFlash 0.6s linear infinite !important;
+            transition: none !important;
+        }
+    `;
+    document.head.appendChild(style);
+
+    const COLORS = [
+        "#e74c3c","#e67e22","#f1c40f","#2ecc71",
+        "#3498db","#9b59b6","#e91e8c","#1abc9c","#fff"
+    ];
+
+    const RESTORE_COLORS = {
+        bugs: { bg: "#2ecc71", border: "#27ae60", shadow: "rgba(46,204,113,0.6)" },
+        fish: { bg: "#3498db", border: "#2980b9", shadow: "rgba(52,152,219,0.6)" },
+        none: { bg: "#2c2c2c", border: "#444",    shadow: "none" },
+    };
+
+    function launchConfetti() {
+        for (let i = 0; i < 120; i++) {
+            setTimeout(() => {
+                const el = document.createElement("div");
+                el.classList.add("confetti-piece");
+                const size = 6 + Math.random() * 8;
+                const dur  = 2.2 + Math.random() * 2;
+                el.style.cssText = `
+                    left: ${Math.random() * 100}vw;
+                    width: ${size}px; height: ${size}px;
+                    background: ${COLORS[Math.floor(Math.random() * COLORS.length)]};
+                    border-radius: ${Math.random() > 0.5 ? "50%" : "2px"};
+                    animation-duration: ${dur}s;
+                `;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), dur * 1000 + 100);
+            }, i * 18);
+        }
+    }
+
+    function flashCells() {
+        const cells = document.querySelectorAll(".cell");
+        const FLASH_DURATION = 3200;
+        const FADE_DURATION  = 700;
+
+        const savedClasses = [];
+        cells.forEach(cell => {
+            savedClasses.push({
+                hasBugs: cell.classList.contains("caught-bugs"),
+                hasFish: cell.classList.contains("caught-fish"),
+            });
+            cell.classList.remove("caught-bugs", "caught-fish");
+        });
+
+        cells.forEach((cell, i) => {
+            setTimeout(() => cell.classList.add("rainbow-flash"), i * 15);
+        });
+
+        setTimeout(() => {
+            cells.forEach((cell, i) => {
+                const saved  = savedClasses[i];
+                const target = saved.hasBugs ? RESTORE_COLORS.bugs
+                             : saved.hasFish ? RESTORE_COLORS.fish
+                             : RESTORE_COLORS.none;
+
+                cell.classList.remove("rainbow-flash");
+                cell.style.transition       = "none";
+                cell.style.backgroundColor  = "#e74c3c";
+                cell.style.borderColor      = "#c0392b";
+                cell.style.boxShadow        = "0 0 12px rgba(231,76,60,0.9)";
+
+                void cell.offsetWidth;
+
+                cell.style.transition = `background-color ${FADE_DURATION}ms ease,
+                                         border-color ${FADE_DURATION}ms ease,
+                                         box-shadow ${FADE_DURATION}ms ease`;
+                cell.style.backgroundColor = target.bg;
+                cell.style.borderColor     = target.border;
+                cell.style.boxShadow       = target.shadow === "none"
+                    ? "none"
+                    : `0 0 10px ${target.shadow}`;
+
+                setTimeout(() => {
+                    cell.style.transition      = "";
+                    cell.style.backgroundColor = "";
+                    cell.style.borderColor     = "";
+                    cell.style.boxShadow       = "";
+                    if (saved.hasBugs) cell.classList.add("caught-bugs");
+                    if (saved.hasFish) cell.classList.add("caught-fish");
+                }, FADE_DURATION + 20);
+            });
+        }, FLASH_DURATION);
+    }
+
+    function celebrate() {
+        launchConfetti();
+        flashCells();
+    }
+
+    // ── Surveille le compteur ─────────────────────────────────
+    // lastWas100 est remis à false à chaque loadGrid() (rechargement Firebase)
+    // pour que tous les joueurs en co-op voient la célébration.
+    let lastWas100 = false;
+    const counterEl = document.getElementById("counter");
+
+    // Patch loadGrid pour réinitialiser lastWas100 à chaque rechargement
+    const _origLoadGrid = window.loadGrid;
+    window.loadGrid = function() {
+        lastWas100 = false;
+        _origLoadGrid.apply(this, arguments);
+    };
+
+    new MutationObserver(() => {
+        const match = counterEl.textContent.match(/(\d+)\s*\/\s*(\d+)/);
+        if (!match) return;
+        const is100 = parseInt(match[1]) === parseInt(match[2]) && parseInt(match[2]) > 0;
+        if (is100 && !lastWas100) celebrate();
+        lastWas100 = is100;
+    }).observe(counterEl, { childList: true, characterData: true, subtree: true });
+
+})();
+
+// ═══════════════════════════════════════════════════════════════
+// MOBILE NAV & DRAWERS
+// ═══════════════════════════════════════════════════════════════
+
+const CATEGORY_ICONS  = { bugs: "🐛", fish: "🐟", sea: "🦀", all: "🐛🐟" };
+const CATEGORY_LABELS = { bugs: "Bugs", fish: "Fish", sea: "Sea", all: "B & F" };
+const GAME_LABELS     = {
+    dnm: "DNM", gc: "GameCube", ep: "DNMe+",
+    ww: "Wild World", cf: "City Folk", nl: "New Leaf", nh: "New Horizons"
+};
+
+const drawerOverlay = document.getElementById("drawerOverlay");
+let activeDrawer = null;
+
+function openDrawer(id) {
+    closeDrawer();
+    const drawer = document.getElementById(id);
+    drawer.classList.add("open");
+    drawerOverlay.classList.add("visible");
+    activeDrawer = drawer;
+}
+function closeDrawer() {
+    if (activeDrawer) { activeDrawer.classList.remove("open"); activeDrawer = null; }
+    drawerOverlay.classList.remove("visible");
+}
+drawerOverlay.addEventListener("click", closeDrawer);
+
+function syncMobileNav() {
+    const game     = gameSelect.value;
+    const category = categorySelect.value;
+    document.getElementById("navGameLabel").textContent     = GAME_LABELS[game]         || game;
+    document.getElementById("navCategoryLabel").textContent = CATEGORY_LABELS[category] || category;
+    document.getElementById("navCategoryIcon").textContent  = CATEGORY_ICONS[category]  || "🐛";
+    document.getElementById("navSoundLabel").textContent    = soundEnabled ? "SFX ON" : "SFX OFF";
+    document.querySelectorAll("#drawerGameOptions .drawer-option").forEach(el => {
+        el.classList.toggle("active", el.dataset.value === game);
+    });
+    document.querySelectorAll("#drawerCategoryOptions .drawer-option").forEach(el => {
+        el.classList.toggle("active", el.dataset.value === category);
+    });
+}
+
+document.getElementById("navGame").addEventListener("click", () => openDrawer("drawerGame"));
+document.getElementById("navCategory").addEventListener("click", () => openDrawer("drawerCategory"));
+document.getElementById("navMulti").addEventListener("click", () => openDrawer("drawerMulti"));
+
+document.getElementById("navNames").addEventListener("click", () => {
+    grid.classList.toggle("show-names");
+    document.getElementById("navNames").classList.toggle("active");
+});
+
+document.getElementById("navSound").addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+    document.getElementById("toggleSound").textContent = soundEnabled ? "SFX ON" : "SFX OFF";
+    syncMobileNav();
+});
+
+document.querySelectorAll("#drawerGameOptions .drawer-option").forEach(el => {
+    el.addEventListener("click", () => {
+        gameSelect.value = el.dataset.value;
+        gameSelect.dispatchEvent(new Event("change"));
+        syncMobileNav();
+        closeDrawer();
+    });
+});
+
+document.querySelectorAll("#drawerCategoryOptions .drawer-option").forEach(el => {
+    el.addEventListener("click", () => {
+        categorySelect.value = el.dataset.value;
+        categorySelect.dispatchEvent(new Event("change"));
+        syncMobileNav();
+        closeDrawer();
+    });
+});
+
+document.getElementById("mobileBtnCoop").addEventListener("click", () => {
+    currentMode = "coop";
+    document.getElementById("mobileBtnCoop").classList.add("active");
+    document.getElementById("mobileBtnRace").classList.remove("active");
+    document.getElementById("mobileCoopFields").style.display = "block";
+    document.getElementById("mobileRaceFields").style.display = "none";
+    document.getElementById("btnModeCoop").click();
+});
+
+document.getElementById("mobileBtnRace").addEventListener("click", () => {
+    currentMode = "race";
+    document.getElementById("mobileBtnRace").classList.add("active");
+    document.getElementById("mobileBtnCoop").classList.remove("active");
+    document.getElementById("mobileRaceFields").style.display = "block";
+    document.getElementById("mobileCoopFields").style.display = "none";
+    document.getElementById("btnModeRace").click();
+});
+
+document.getElementById("mobileCreateRoom").addEventListener("click", () => {
+    currentMode = "coop";
+    currentRoom = Math.random().toString(36).substring(2, 8);
+    set(ref(`rooms/${currentRoom}/mode`), "coop");
+    set(ref(`rooms/${currentRoom}/lastActive`), Date.now());
+    document.getElementById("mobileRoomInput").value = currentRoom;
+    document.getElementById("roomInput").value       = currentRoom;
+    alert("Co-op room created: " + currentRoom);
+    closeDrawer();
+    listenToRoom();
+});
+
+document.getElementById("mobileJoinRoom").addEventListener("click", () => {
+    const code = document.getElementById("mobileRoomInput").value.trim();
+    if (!code) return alert("Enter a room code");
+    currentMode = "coop";
+    currentRoom = code;
+    document.getElementById("roomInput").value = code;
+    set(ref(`rooms/${currentRoom}/lastActive`), Date.now());
+    alert("Joined co-op room: " + code);
+    closeDrawer();
+    listenToRoom();
+});
+
+document.getElementById("mobileCreateRaceRoom").addEventListener("click", () => {
+    const pseudo = document.getElementById("mobilePseudoInput").value.trim();
+    if (!pseudo) return alert("Enter a nickname first");
+    myPseudo    = sanitizeKey(pseudo);
+    currentMode = "race";
+    currentRoom = Math.random().toString(36).substring(2, 8);
+    set(ref(`rooms/${currentRoom}/mode`), "race");
+    set(ref(`rooms/${currentRoom}/lastActive`), Date.now());
+    document.getElementById("mobileRaceRoomInput").value = currentRoom;
+    document.getElementById("raceRoomInput").value       = currentRoom;
+    alert("Race room created: " + currentRoom);
+    closeDrawer();
+    listenToRoom();
+});
+
+document.getElementById("mobileJoinRaceRoom").addEventListener("click", () => {
+    const pseudo = document.getElementById("mobilePseudoInput").value.trim();
+    const code   = document.getElementById("mobileRaceRoomInput").value.trim();
+    if (!pseudo) return alert("Enter a nickname first");
+    if (!code)   return alert("Enter a room code");
+    myPseudo    = sanitizeKey(pseudo);
+    currentMode = "race";
+    currentRoom = code;
+    document.getElementById("raceRoomInput").value = code;
+    set(ref(`rooms/${currentRoom}/lastActive`), Date.now());
+    alert(`Joined race room: ${code} as ${pseudo}`);
+    closeDrawer();
+    listenToRoom();
+});
+
+syncMobileNav();

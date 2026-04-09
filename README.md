@@ -1,23 +1,27 @@
 # 🐛 Animal Crossing Tracker
 
-A simple and visual web app to track the bugs and fish you've caught during your **Animal Crossing speedruns** — now with **real-time multiplayer modes**!
+A simple and visual web app to track the bugs, fish and sea creatures you've caught during your **Animal Crossing speedruns** — now with **real-time multiplayer modes** and **mobile support**!
 
 ---
 
 ## ✨ Features
 
-- Track bugs and fish across multiple games:
+- Track bugs, fish and sea creatures across all mainline games:
+  - Doubutsu no Mori (N64)
   - GameCube
+  - Doubutsu no Mori e+
   - Wild World
   - City Folk
   - New Leaf
   - New Horizons
 - Click icons to mark creatures as caught
 - Live counter with percentage completion
+- **Bugs & Fish** combined grid for full-game tracking
+- **Sea Creatures** grid for New Leaf and New Horizons
+- 🎉 Celebration animation (confetti + rainbow flash) when a grid is completed
 - Optional sound effects
 - Toggle creature names display
 - Progress saved automatically (localStorage)
-- **Bugs & Fish** combined grid for full-game tracking (Net & Rod categories)
 
 ### 🤝 Co-op Mode
 
@@ -27,7 +31,7 @@ A simple and visual web app to track the bugs and fish you've caught during your
 - Progress is separated per game and category
 - Automatic room cleanup after 24h of inactivity
 
-### 🏁 Race Mode (NEW)
+### 🏁 Race Mode
 
 - Enter a nickname and create or join a race room
 - Each player has their **own independent grid**
@@ -50,7 +54,7 @@ Perfect for **competitive speedruns** or racing with friends!
 
 ### Solo Mode
 
-1. Select your game and category (Bugs, Fish, or Bugs & Fish)
+1. Select your game and category (Bugs, Fish, Sea Creatures, or Bugs & Fish)
 2. Click on creatures as you catch them
 3. Track your progress in real time
 
@@ -69,6 +73,15 @@ Perfect for **competitive speedruns** or racing with friends!
 3. Click **Create** to generate a room code, or **Join** with an existing code
 4. Each player tracks their own progress independently
 5. Watch the scoreboard update in real time!
+
+---
+
+## 📱 Mobile
+
+The app is fully usable on mobile with a dedicated interface:
+- Fixed bottom navigation bar for quick access to game, category and settings
+- Slide-up drawers for game/category selection and multiplayer
+- Adaptive grid that fills the screen automatically
 
 ---
 
@@ -101,18 +114,12 @@ If updates don't appear immediately, try refreshing the page.
 ## 💫 Future Updates
 
 ### 🆕 New Content
-- Add support for **Doubutsu no Mori (N64)** and **Doubutsu no Mori e+**
-- Add **Sea Creatures** tracking (New Leaf & New Horizons)
 - Add **Fossils** tracking across all games
 - Add **Art / Paintings (Redd)** tracking
 
 ### 🎨 UI Improvements
 - Improved overall interface and visual polish
 - Optional themes (per game or global)
-
-### 📱 Mobile Support
-- Responsive design for mobile devices
-- Improved touch interactions
 
 ---
 ![AC Tracker Demo](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbDk2MG9zdXV1b2FsZmcwZjI3bmIxYTYzc2ExYW1jZWo3NGFuMmhkdCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/aSE0E1z4TJqAo/giphy.gif)
